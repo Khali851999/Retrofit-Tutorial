@@ -106,27 +106,33 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
 
                 progressDialog.dismiss();
+                if(response.isSuccessful()){
+                    if (response.body().getSuccessCode() == SUCCESS_REGISTER_CODE) {
 
-                if (response.body().getSuccessCode() == SUCCESS_REGISTER_CODE) {
+                        Toast.makeText(MainActivity.this, "Registered Successfully...", Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(MainActivity.this, "Registered Successfully...", Toast.LENGTH_SHORT).show();
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putBoolean("isLoggedIn", true);
 
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putBoolean("isLoggedIn", true);
+                        startActivity(new Intent(MainActivity.this, HomeScreen.class));
+                        finish();
 
-                    startActivity(new Intent(MainActivity.this, HomeScreen.class));
-                    finish();
+                    } else if (response.body().getSuccessCode() == USER_EXISTS_CODE) {
 
-                } else if (response.body().getSuccessCode() == USER_EXISTS_CODE) {
+                        //TODO Start Login Activity
+                        Toast.makeText(MainActivity.this, "User already exists...", Toast.LENGTH_SHORT).show();
 
-                    //TODO Start Login Activity
-                    Toast.makeText(MainActivity.this, "User already exists...", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                } else {
+                        Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
+                    }
+                }else{
 
+                    Toast.makeText(MainActivity.this, "Error Occurred..", Toast.LENGTH_SHORT).show();
                 }
+
+                
             }
 
             @Override
