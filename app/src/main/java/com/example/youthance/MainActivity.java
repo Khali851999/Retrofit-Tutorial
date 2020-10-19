@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<LoginModel> call, Response<LoginModel> response) {
 
                 progressDialog.dismiss();
+
                 if(response.isSuccessful()){
                     if (response.body().getSuccessCode() == SUCCESS_REGISTER_CODE) {
 
