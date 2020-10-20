@@ -60,6 +60,7 @@
         android:background="@drawable/round_border"
         android:hint="Your name*"
         android:maxLength="20"
+        android:maxLines="1"
         android:padding="10dp"
         android:paddingLeft="10dp"></EditText>
 
@@ -86,6 +87,7 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/round_border"
         android:hint="Email id*"
+        android:maxLines="1"
         android:padding="10dp"
         android:paddingLeft="10dp"></EditText>
 
@@ -99,6 +101,7 @@
         android:background="@drawable/round_border"
         android:hint="Create Password*"
         android:inputType="textPassword"
+        android:maxLines="1"
         android:padding="10dp"
         android:paddingLeft="10dp"></EditText>
 
@@ -114,18 +117,16 @@
         android:textColor="@color/white"></Button>
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:gravity="center"
-            android:id="@+id/privacyTextView"
-            android:textIsSelectable="true"
-            android:outlineAmbientShadowColor="@color/black"
-            ></TextView>
-
+    <TextView
+        android:id="@+id/privacyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:outlineAmbientShadowColor="@color/black"
+        android:textIsSelectable="true"></TextView>
 
 
     <!--    <com.google.android.material.textfield.TextInputLayout-->

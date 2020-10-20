@@ -59,18 +59,19 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/round_border"
         android:focusable="false"
-        android:hint="Your name*"
+        android:hint="Your Date of birth*"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
 
         <TextView
+            android:id="@+id/dobTextView"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:id="@+id/dobTextView"
             android:focusable="false"
             android:gravity="center_vertical"
             android:hint="Date of birth*"
+            android:textColor="@color/black"
             android:textSize="18dp"></TextView>
 
         <ImageView
@@ -98,8 +99,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="8"
-            android:hint="City*"
-            android:background="@drawable/round_border"></Spinner>
+            android:background="@drawable/round_border"
+            android:hint="City*"></Spinner>
 
         <ImageView
             android:layout_width="0dp"
@@ -108,7 +109,6 @@
             android:padding="6dp"
             android:src="@drawable/drop_down_icon"></ImageView>
     </LinearLayout>
-
 
 
     <EditText
@@ -120,7 +120,10 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/round_border"
         android:hint="Pincode*"
-        android:paddingLeft="10dp"></EditText>
+        android:inputType="number"
+        android:maxLength="6"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"></EditText>
 
     <TextView
         android:layout_width="wrap_content"

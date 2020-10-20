@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         mobile = mobileEditText.getText().toString().trim();
         email = emailEditText.getText().toString().trim();
         password = passwordEditText.getText().toString().trim();
-        boolean isValid = false;
+        boolean isValid = true;
 
         if (name.isEmpty()) {
             nameEditText.setError("Cannot be empty");
