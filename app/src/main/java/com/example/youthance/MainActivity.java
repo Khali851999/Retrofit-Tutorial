@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     String name, mobile, email, password;
     ProgressDialog progressDialog;
     SharedPreferences sharedPreferences;
-    TextView privacyTextView;
+    TextView privacyTextView, loginTextView;
 
     //successCode = 1 if registration is successful
     //successCode = 0 if user already exists
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        startActivity(new Intent(MainActivity.this, HomeScreen.class));
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -54,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
         passwordEditText = findViewById(R.id.passwordEditText);
         signupButton = findViewById(R.id.signupButton);
         privacyTextView = findViewById(R.id.privacyTextView);
+        loginTextView = findViewById(R.id.loginTextView);
+
+        loginTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //for test purposes
+                startActivity(new Intent(MainActivity.this, HomeScreen.class));
+                finish();
+            }
+        });
 
         String text = "By signing in I agree to the youthance  <a href='http://www.google.com'> Privacy Policy </a> " +
                 "and <a href='http://www.google.com'> Terms and Conditions </a>";
@@ -98,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         email = emailEditText.getText().toString();
         password = passwordEditText.getText().toString();
 
-//        LoginModel loginModel = new LoginModel(name,mobile, email,password);
 
         Call<LoginModel> call = RetrofitAPIClient.getInstance().getApi().createUser(name, mobile, email, password);
         call.enqueue(new Callback<LoginModel>() {
@@ -126,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
                     } else {
 
                         Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
-
                     }
+
                 }else{
 
                     Toast.makeText(MainActivity.this, "Error Occurred..", Toast.LENGTH_SHORT).show();
@@ -151,37 +160,38 @@ public class MainActivity extends AppCompatActivity {
         mobile = mobileEditText.getText().toString().trim();
         email = emailEditText.getText().toString().trim();
         password = passwordEditText.getText().toString().trim();
+        boolean isValid = false;
 
         if (name.isEmpty()) {
             nameEditText.setError("Cannot be empty");
-            return false;
+            isValid = false;
         }
         if (mobile.isEmpty()) {
             mobileEditText.setError("Cannot be empty");
-            return false;
+            isValid = false;
         }
         if (!Patterns.PHONE.matcher(mobile).matches()) {
-            emailEditText.setError("Invalid Email");
-            return false;
+            emailEditText.setError("Invalid Phone Number");
+            isValid = false;
         }
         if (email.isEmpty()) {
             emailEditText.setError("Cannot be empty");
-            return false;
+            isValid = false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Invalid Email");
-            return false;
+            isValid = false;
         }
         if (password.isEmpty()) {
             passwordEditText.setError("Cannot be empty");
-            return false;
+            isValid = false;
         }
         if (password.length() < 6) {
             passwordEditText.setError("Must be more than 6 characters");
-            return false;
+            isValid = false;
         }
 
-        return true;
+        return isValid;
 
     }
 }
