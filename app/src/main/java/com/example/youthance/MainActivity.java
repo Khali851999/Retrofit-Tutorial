@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setMessage("Registering..");
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
 
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     if (response.body().getSuccessCode() == SUCCESS_REGISTER_CODE) {
 
                         Toast.makeText(MainActivity.this, "Registered Successfully...", Toast.LENGTH_SHORT).show();
@@ -137,12 +136,12 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_SHORT).show();
                     }
 
-                }else{
+                } else {
 
                     Toast.makeText(MainActivity.this, "Error Occurred..", Toast.LENGTH_SHORT).show();
                 }
 
-                
+
             }
 
             @Override
@@ -164,30 +163,37 @@ public class MainActivity extends AppCompatActivity {
 
         if (name.isEmpty()) {
             nameEditText.setError("Cannot be empty");
+            nameEditText.setFocusable(true);
             isValid = false;
         }
         if (mobile.isEmpty()) {
             mobileEditText.setError("Cannot be empty");
+            mobileEditText.setFocusable(true);
             isValid = false;
         }
         if (!Patterns.PHONE.matcher(mobile).matches()) {
-            emailEditText.setError("Invalid Phone Number");
+            mobileEditText.setError("Invalid Phone Number");
+            mobileEditText.setFocusable(true);
             isValid = false;
         }
         if (email.isEmpty()) {
             emailEditText.setError("Cannot be empty");
+            emailEditText.setFocusable(true);
             isValid = false;
         }
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText.setError("Invalid Email");
+            emailEditText.setFocusable(true);
             isValid = false;
         }
         if (password.isEmpty()) {
             passwordEditText.setError("Cannot be empty");
+            passwordEditText.setFocusable(true);
             isValid = false;
         }
         if (password.length() < 6) {
             passwordEditText.setError("Must be more than 6 characters");
+            passwordEditText.setFocusable(true);
             isValid = false;
         }
 
